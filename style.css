@@ -16,7 +16,6 @@ body {
     color: #fff;
 }
 
-
 .conteneur {
     width: 100%;
     max-width: 1100px;
@@ -25,7 +24,6 @@ body {
     gap: 32px;
     align-items: start;
 }
-
 
 .carte {
     background: rgba(255, 255, 255, 0.08);
@@ -74,7 +72,6 @@ h1 {
     line-height: 1.5;
 }
 
-
 .groupe {
     margin-bottom: 20px;
 }
@@ -99,7 +96,7 @@ label {
 
 label i {
     font-size: 16px;
-    color: #60a5fa;
+    color: hsl(212, 87%, 3%);
 }
 
 .indice {
@@ -172,7 +169,7 @@ select:focus {
     top: 50%;
     transform: translateY(-50%);
     font-size: 18px;
-    color: #6b7280;
+    color: #010713;
     pointer-events: none;
 }
 
@@ -209,7 +206,7 @@ select:focus {
 
 .option-radio i {
     font-size: 18px;
-    color: #2563eb;
+    color: #010816;
 }
 
 .option-radio:hover {
@@ -221,6 +218,7 @@ select:focus {
     border-color: #2563eb;
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
+
 
 .groupe-cases {
     display: flex;
@@ -279,7 +277,7 @@ select:focus {
     color: #60a5fa;
 }
 
-
+/* MESSAGES D'ERREUR & VALIDITÉ*/
 .message-erreur {
     display: block;
     min-height: 16px;
@@ -297,7 +295,7 @@ select:focus {
     border-color: #22c55e !important;
 }
 
-
+/* BOUTON SOUMETTRE*/
 button[type="submit"] {
     width: 100%;
     padding: 16px;
@@ -329,7 +327,7 @@ button[type="submit"]:active {
     transform: translateY(0);
 }
 
-
+/*  SECTION CARTE PROFIL (à droite)*/
 #carteProfil {
     position: sticky;
     top: 40px;
@@ -479,6 +477,7 @@ button[type="submit"]:active {
     from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
 }
+
 
 @media (max-width: 900px) {
     .conteneur {
