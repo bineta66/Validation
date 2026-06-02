@@ -14,18 +14,48 @@ document.getElementById('carteProfil').innerHTML = `
 `;
 
 // Pour input / select / textarea
+function trouverMessageErreur(champ) {
+    if (!champ) return null;
+
+    // Cas normal : le champ est dans un .groupe qui contient le <small.message-erreur>
+    let petit = champ.closest?.('.groupe')?.querySelector?.('.message-erreur') || null;
+    if (petit) return petit;
+
+    // Fallback : si on peut utiliser l'id du champ, chercher un message proche
+    if (champ.id) {
+        // on cherche un .groupe qui contient l'input avec cet id
+        petit = document.querySelector?.(`.groupe:has(#${CSS.escape(champ.id)}) .message-erreur`) || null;
+        if (petit) return petit;
+
+        // sinon tenter via le label + conteneur immédiat
+        petit = document.querySelector?.(`#${CSS.escape(champ.id)} ~ .message-erreur`) || null;
+        if (petit) return petit;
+    }
+
+    // Dernier recours : chercher le premier message-erreur dans le parent direct
+    petit = champ.parentElement?.querySelector?.('.message-erreur') || null;
+    return petit;
+}
+
 function afficherErreur(champ, message) {
+    if (!champ) return;
     champ.classList.remove('bordure-succes');
     champ.classList.add('bordure-erreur');
-    const petit = champ.closest('.groupe')?.querySelector('.message-erreur');
+
+    const petit = trouverMessageErreur(champ);
     if (petit) petit.textContent = message;
 }
 function effacerErreur(champ) {
+    if (!champ) return;
     champ.classList.remove('bordure-erreur');
     champ.classList.add('bordure-succes');
-    const petit = champ.closest('.groupe')?.querySelector('.message-erreur');
+
+    const petit = trouverMessageErreur(champ);
     if (petit) petit.textContent = '';
 }
+
+
+
 
 // Pour radio / checkbox (pas de champ unique ciblé)
 function afficherErreurGroupe(groupe, message) {
@@ -42,9 +72,7 @@ function validerNom() {
     const v = c.value.trim();
 
     if (v === '') {
-        c.classList.remove('bordure-erreur', 'bordure-succes');
-        const petit = c.closest('.groupe')?.querySelector('.message-erreur');
-        if (petit) petit.textContent = '';
+        afficherErreur(c, 'Nom obligatoire.');
         return false;
     }
 
@@ -61,9 +89,7 @@ function validerPrenom() {
     const v = c.value.trim();
 
     if (v === '') {
-        c.classList.remove('bordure-erreur', 'bordure-succes');
-        const petit = c.closest('.groupe')?.querySelector('.message-erreur');
-        if (petit) petit.textContent = '';
+        afficherErreur(c, 'Prénom obligatoire.');
         return false;
     }
 
@@ -82,9 +108,7 @@ function validerEmail() {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (v === '') {
-        c.classList.remove('bordure-erreur', 'bordure-succes');
-        const petit = c.closest('.groupe')?.querySelector('.message-erreur');
-        if (petit) petit.textContent = '';
+        afficherErreur(c, 'E-mail obligatoire.');
         return false;
     }
 
@@ -96,6 +120,7 @@ function validerEmail() {
     effacerErreur(c);
     return true;
 }
+
 
 function validerDomaine() {
     const c = document.getElementById('domaine');
