@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Profil</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Icônes Tabler -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.0.0/tabler-icons.min.css">
+</head>
+<body>
+
+    <main class="conteneur">
+        <section class="carte">
+
+            <div class="entete">
+                <div class="icone-avatar">
+                    <i class="ti ti-user-circle"></i>
+                </div>
+                <div>
+                    <h1>Mieux se connaître</h1>
+                    <p class="sous-titre">Partage quelques informations pour créer ton profil</p>
+                </div>
+            </div>
+
+            <form id="formulaire" novalidate>
+
+                <!-- Nom & Prénom -->
+                <div class="rangee">
+                    <div class="groupe">
+                        <label for="nom">
+                            <i class="ti ti-user"></i> Nom
+                        </label>
+                        <input type="text" id="nom" placeholder="Ex : Badiane">
+                        <small class="message-erreur"></small>
+                    </div>
+                    <div class="groupe">
+                        <label for="prenom">
+                            <i class="ti ti-user"></i> Prénom
+                        </label>
+                        <input type="text" id="prenom" placeholder="Ex : Bineta">
+                        <small class="message-erreur"></small>
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="groupe">
+                    <label for="email">
+                        <i class="ti ti-mail"></i> Adresse e-mail
+                    </label>
+                    <input type="email" id="email" placeholder="Ex : bineta@gmail.com">
+                    <small class="message-erreur"></small>
+                </div>
+
+                <!-- Domaine -->
+                <div class="groupe">
+                    <label for="domaine">
+                        <i class="ti ti-briefcase"></i> Domaine de prédilection
+                    </label>
+                    <div class="select-enveloppe">
+                        <select id="domaine">
+                            <option value="">Sélectionne ton domaine…</option>
+                            <option value="Front-End">Front-End</option>
+                            <option value="Back-End">Back-End</option>
+                            <option value="Design UX">Design UX</option>
+                            <option value="Data">Data</option>
+                            <option value="DevOps">DevOps</option>
+                            <option value="Mobile">Mobile</option>
+                        </select>
+                        <i class="ti ti-chevron-down icone-select"></i>
+                    </div>
+                    <small class="message-erreur"></small>
+                </div>
+
+                <!-- Rythme -->
+                <div class="groupe">
+                    <label><i class="ti ti-clock"></i> Tu es plutôt…</label>
+                    <div class="groupe-radio">
+                        <label class="option-radio">
+                            <input type="radio" name="rythme" value="leve-tot">
+                            <i class="ti ti-sun"></i> Levé-tot
+                        </label>
+                        <label class="option-radio">
+                            <input type="radio" name="rythme" value="couche-tard">
+                            <i class="ti ti-moon"></i> Couche-tard
+                        </label>
+                    </div>
+                    <small class="message-erreur"></small>
+                </div>
+
+                <!-- Centres d'intérêt -->
+                <div class="groupe">
+                    <label>
+                        <i class="ti ti-heart"></i> Centres d'intérêt
+                        <span class="indice">(au moins 2)</span>
+                    </label>
+                    <div class="groupe-cases">
+                        <label class="option-case">
+                            <input type="checkbox" value="Veille Tech">
+                            <i class="ti ti-device-laptop"></i> Veille Tech
+                        </label>
+                        <label class="option-case">
+                            <input type="checkbox" value="Gaming">
+                            <i class="ti ti-device-gamepad-2"></i> Gaming
+                        </label>
+                        <label class="option-case">
+                            <input type="checkbox" value="Sport">
+                            <i class="ti ti-run"></i> Sport
+                        </label>
+                        <label class="option-case">
+                            <input type="checkbox" value="Musique">
+                            <i class="ti ti-music"></i> Musique
+                        </label>
+                        <label class="option-case">
+                            <input type="checkbox" value="Lecture">
+                            <i class="ti ti-book"></i> Lecture
+                        </label>
+                    </div>
+                    <small class="message-erreur"></small>
+                </div>
+
+                <!-- Présentation libre -->
+                <div class="groupe">
+                    <label for="bio">
+                        <i class="ti ti-pencil"></i> Présentation libre
+                    </label>
+                    <textarea id="bio" maxlength="255"
+                        placeholder="Raconte-nous une anecdote drôle ou ton ambition ultime dans la tech…"></textarea>
+                    <div class="compteur">
+                        <span id="restants">255</span> caractères restants
+                    </div>
+                    <small class="message-erreur"></small>
+                </div>
+
+                <button type="submit">
+                    <i class="ti ti-send"></i> Créer mon profil
+                </button>
+
+            </form>
+        </section>
+        <section id="carteProfil"></section>
+
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
