@@ -76,8 +76,8 @@ function validerNom() {
         return false;
     }
 
-    if (v.length < 3) {
-        afficherErreur(c, 'Minimum 3 caractères.');
+    if (v.length < 2) {
+        afficherErreur(c, 'Minimum 2 caractères.');
         return false;
     }
 
@@ -159,7 +159,8 @@ function validerBio() {
         afficherErreur(c, `Minimum 25 caractères — encore ${25 - val.length} à écrire.`);
         return false;
     }
-    effacerErreur(c); return true;
+    effacerErreur(c);
+     return true;
 }
 
 /* COMPTEUR CARACTÈRES + validation bio*/
@@ -288,4 +289,31 @@ document.getElementById('formulaire').addEventListener('submit', (e) => {
 
     document.getElementById('carteProfil')
         .scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    // Réinitialiser le formulaire après génération de la carte
+    const formulaire = document.getElementById('formulaire');
+    formulaire.reset();
+
+    // Remettre l'état visuel de validation à zéro
+    // Champs texte/select/textarea
+    [document.getElementById('nom'), document.getElementById('prenom'), document.getElementById('email'), document.getElementById('domaine'), document.getElementById('bio')]
+        .forEach((el) => {
+            if (!el) return;
+            el.classList.remove('bordure-erreur', 'bordure-succes');
+            const msg = el.closest?.('.groupe')?.querySelector?.('.message-erreur');
+            if (msg) msg.textContent = '';
+        });
+
+    // Radios rythme
+    const groupeRythme = document.querySelector('input[name="rythme"]:checked')
+        ? document.querySelector('input[name="rythme"]:checked').closest('.groupe')
+        : document.querySelector('input[name="rythme"]').closest('.groupe');
+    if (groupeRythme) effacerErreurGroupe(groupeRythme);
+
+    // Checkbox intérêts
+    const groupeInterets = document.querySelector('.groupe-cases').closest('.groupe');
+    if (groupeInterets) effacerErreurGroupe(groupeInterets);
+
+    // Compteur caractères bio
+    restants.textContent = 255;
 });
